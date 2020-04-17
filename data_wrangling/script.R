@@ -41,7 +41,7 @@ channels_application_rec <- channels_application_rec %>% rename(channel = ...1, 
   select(channel, october,November,December,January,February, ...7) %>%
   clean_names() %>% 
   filter(channel %in% c("Online","Paper","Phone")) %>% 
-  select(-x7)
+  select(-x7)%>% mutate(channel = str_to_lower(channel))
 
 ## Writing CSV
 write_csv(channels_application_rec,"clean_data/channels_application_rec.csv")
