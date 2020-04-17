@@ -1,0 +1,38 @@
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(lubridate)
+```
+
+```{r}
+application_decision_month <- read_xlsx("Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 2,skip = 3)
+```
+
+```{r}
+test <- application_decision_month %>% 
+  rename(year = ...1, month = ...2) %>% 
+  filter(!is.na(`Total applications received`)) %>% 
+  filter(!is.na(month)) %>% clean_names()
+```
+
+```{r}
+test$year[test$month == "November"] <- "2019"
+test$year[test$month == "December"] <- "2019"
+test$year[test$month == "February"] <- "2020"
+test$month[test$month == "October2"] <- "October"
+```
+
+```{r}
+dates <- test %>% select(year,month)
+stats <- test %>% select( -year,-month) %>% mutate_all(as.numeric)
+```
+```{r}
+df <- cbind(dates,stats)
+```
+
+```{r}
+
+
+```
+
