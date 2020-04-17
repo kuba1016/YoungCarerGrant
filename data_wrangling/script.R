@@ -64,9 +64,26 @@ age_group <- age_group %>%
 
 write_csv(age_group,"clean_data/age_group.csv")
 
+# Load fourth sheet
 
+by_location <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 5,skip = 3)
 
+#Cleaning data
 
+by_location <- by_location %>% rename(location = ...1) %>% 
+  clean_names() %>% 
+  filter(location != "Total") %>% 
+  select(-starts_with("percent")) %>% 
+  filter(!is.na(total_applications_received),location!="No address4") %>% 
+  mutate(location = str_remove(location,"[0-9]"))
+
+location <- by_location %>% select(location)
+stats <- by_location %>% select(-location) %>% mutate_all(as.numeric)
+by_location <- cbind(location,stats)
+
+# Writing CSV
+
+write_csv(by_location,"clean_data/by_location.csv")
 
 
 

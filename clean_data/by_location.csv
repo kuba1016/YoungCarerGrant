@@ -1,0 +1,35 @@
+location,total_applications_received,total_applications_processed,of_which_authorised
+Aberdeen City,20,10,10
+Aberdeenshire,30,25,15
+Angus,50,35,30
+Argyll & Bute,40,30,25
+Clackmannanshire,15,10,NA
+Dumfries & Galloway,60,45,40
+Dundee City,55,35,NA
+East Ayrshire,60,50,40
+East Dunbartonshire,50,35,NA
+East Lothian,20,15,NA
+East Renfrewshire,45,35,NA
+"Edinburgh, City of",65,50,40
+Na h-Eileanan Siar,10,NA,NA
+Falkirk,45,40,NA
+Fife,100,75,60
+Glasgow City,205,160,135
+Highland,55,45,NA
+Inverclyde,60,50,NA
+Midlothian,25,20,NA
+Moray,10,10,10
+North Ayrshire,65,50,45
+North Lanarkshire,120,85,80
+Orkney Islands,NA,0,0
+Perth & Kinross,45,40,30
+Renfrewshire,75,55,NA
+Scottish Borders,20,15,15
+Shetland Islands,5,5,5
+South Ayrshire,30,20,NA
+South Lanarkshire,95,70,60
+Stirling,30,15,NA
+West Dunbartonshire,25,15,NA
+West Lothian,70,50,45
+Unknown - Scottish address,0,0,0
+Non-Scottish postcode,5,5,0
