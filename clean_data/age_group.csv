@@ -1,0 +1,5 @@
+age_group,total_applications_received,total_applications_processed,of_which_authorised,of_which_denied,of_which_withdrawn
+16 years,720,525,485,30,10
+17 years,570,430,355,60,15
+18 years,290,220,190,20,10
+other,25,20,0,15,5

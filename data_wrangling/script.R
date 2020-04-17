@@ -46,3 +46,27 @@ channels_application_rec <- channels_application_rec %>% rename(channel = ...1, 
 ## Writing CSV
 write_csv(channels_application_rec,"clean_data/channels_application_rec.csv")
 
+# Load third sheet
+
+age_group <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 4,skip = 3)
+
+#Cleaning data
+
+age_group <- age_group %>% 
+  filter(...1!="Total") %>%
+  rename(age_group = ...1) %>% 
+  clean_names() %>%
+  filter(!is.na(total_applications_received)) %>% 
+  mutate(age_group=replace(age_group,which(age_group=="Other2"),"other")) %>% 
+  select(-percent_of_total_applications_received,-percent_authorised,-percent_denied,-percent_withdrawn)
+
+# Writing CSV
+
+write_csv(age_group,"clean_data/age_group.csv")
+
+
+
+
+
+
+
