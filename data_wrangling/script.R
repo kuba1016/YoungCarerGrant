@@ -30,3 +30,19 @@ class(df)
 # Writing CSV
 
 write_csv(df,"clean_data/application_decision_month.csv")
+
+# Load secon sheet
+channels_application_rec <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 3,skip = 4)
+
+#Cleaning data
+
+channels_application_rec <- channels_application_rec %>% rename(channel = ...1, october = October1) %>% 
+  filter(channel !="Total") %>% 
+  select(channel, october,November,December,January,February, ...7) %>%
+  clean_names() %>% 
+  filter(channel %in% c("Online","Paper","Phone")) %>% 
+  select(-x7)
+
+## Writing CSV
+write_csv(df,"clean_data/channels_application_rec.csv")
+
