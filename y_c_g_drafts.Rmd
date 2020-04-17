@@ -2,37 +2,44 @@
 library(tidyverse)
 library(readxl)
 library(janitor)
-library(lubridate)
+
 ```
 
 ```{r}
-application_decision_month <- read_xlsx("Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 2,skip = 3)
+application_decision_month <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 2,skip = 3)
 ```
 
 ```{r}
-test <- application_decision_month %>% 
+ application_decision_month<- application_decision_month %>% 
   rename(year = ...1, month = ...2) %>% 
   filter(!is.na(`Total applications received`)) %>% 
   filter(!is.na(month)) %>% clean_names()
 ```
 
 ```{r}
-test$year[test$month == "November"] <- "2019"
-test$year[test$month == "December"] <- "2019"
-test$year[test$month == "February"] <- "2020"
-test$month[test$month == "October2"] <- "October"
+application_decision_month$year[application_decision_month$month == "November"] <- "2019"
+application_decision_month$year[application_decision_month$month == "December"] <- "2019"
+application_decision_month$year[application_decision_month$month == "February"] <- "2020"
+application_decision_month$month[application_decision_month$month == "October2"] <- "October"
 ```
 
 ```{r}
-dates <- test %>% select(year,month)
-stats <- test %>% select( -year,-month) %>% mutate_all(as.numeric)
+dates <- application_decision_month %>% select(year,month)
+stats <- application_decision_month %>% select( -year,-month) %>% mutate_all(as.numeric)
 ```
 ```{r}
 df <- cbind(dates,stats)
+df
 ```
 
 ```{r}
+channels_application_rec <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 3,skip = 4)
 
-
+channels_application_rec <- channels_application_rec %>% rename(channel = ...1, october = October1) %>% 
+  filter(channel !="Total") %>% 
+  select(channel, october,November,December,January,February, ...7) %>%
+  clean_names() %>% 
+  filter(channel %in% c("Online","Paper","Phone")) %>% 
+  select(-x7)
 ```
 

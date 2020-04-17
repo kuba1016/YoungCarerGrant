@@ -16,7 +16,7 @@ application_decision_month<- application_decision_month %>%
 
 #Fixing the missing values
 
-pplication_decision_month$year[application_decision_month$month == "November"] <- "2019"
+application_decision_month$year[application_decision_month$month == "November"] <- "2019"
 application_decision_month$year[application_decision_month$month == "December"] <- "2019"
 application_decision_month$year[application_decision_month$month == "February"] <- "2020"
 application_decision_month$month[application_decision_month$month == "October2"] <- "October"
@@ -44,5 +44,5 @@ channels_application_rec <- channels_application_rec %>% rename(channel = ...1, 
   select(-x7)
 
 ## Writing CSV
-write_csv(df,"clean_data/channels_application_rec.csv")
+write_csv(channels_application_rec,"clean_data/channels_application_rec.csv")
 
