@@ -87,5 +87,36 @@ by_location <- cbind(location,stats)
 
 write_csv(by_location,"clean_data/by_location.csv")
 
+# Load fith sheet
+cared_for_person <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 6,skip = 3)
+
+#Cleaning data
+
+cared_for_person <- cared_for_person %>% rename(cared_for_person = ...1) %>% 
+  clean_names() %>% 
+  filter(!cared_for_person %in% c("Total","Unknown2")) %>% 
+  select(-starts_with("percent")) %>% 
+  filter(!is.na(total_applications_received)) 
+
+info <- cared_for_person %>% select(cared_for_person)
+stats <- cared_for_person %>% select(-cared_for_person) %>% mutate_all(as.numeric)
+cared_for_person <- cbind(info,stats)
+
+# Writing CSV
+
+write_csv(cared_for_person,"clean_data/cared_for_person.csv")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
