@@ -106,10 +106,24 @@ cared_for_person <- cbind(info,stats)
 
 write_csv(cared_for_person,"clean_data/cared_for_person.csv")
 
+# Load sixth sheet
+
+value_of_payments <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 8,skip = 2)
+
+#Cleaning data
+
+value_of_payments <- value_of_payments %>% 
+  clean_names() %>% 
+  rename(value_of_payments = value_of_payments1_2_3) %>% 
+  select(-percent_of_total_payments) %>% 
+  filter(!is.na(local_authority), local_authority != "Total",!is.na(value_of_payments)) %>% 
+  filter(local_authority != "No address6") %>% mutate(local_authority = str_remove(local_authority, "[0-9]")) %>% 
+  mutate(value_of_payments = as.numeric(value_of_payments))
 
 
+# Writing CSV
 
-
+write_csv(value_of_payments, "clean_data/value_of_payments.csv")
 
 
 
