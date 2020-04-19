@@ -127,10 +127,20 @@ write_csv(value_of_payments, "clean_data/value_of_payments.csv")
 
 
 
+# Lad the csv file from http://geoportal.statistics.gov.uk/
 
+geo_local_authority <- 
+  read_csv("raw_data/Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain.csv")
 
+#  extracting geo of scotish local authorities
 
+geo_local_authority <- geo_local_authority %>% select(lad17nm,long,lat) %>%
+  rename(location = lad17nm) %>% 
+  filter(lat > 55) %>% arrange(lat) %>% filter(!location  %in% c("Northumberland",
+                                                                 "North Tyneside",
+                                                                 "Newcastle upon Tyne"))
+# Save CSV 
 
-
+write_csv(geo_local_authority, "clean_data/geo_local_authority.csv")
 
 
