@@ -136,11 +136,36 @@ library(leaflet)
 map <- 
   leaflet() %>% 
   addTiles() %>% 
-  addMarkers(lng = geo_local_authority$long,lat = geo_local_authority$lat,popup = geo_local_authority$location)
+  addMarkers(lng = geo_local_authority$long,lat = geo_local_authority$lat,label = geo_local_authority$location )
 ```
 
 ```{r}
 map%>% addProviderTiles(providers$CartoDB.Positron)
 ```
 
+```{r}
+geo_local_authority %>% arrange(location)
+```
+
+```{r}
+by_location
+```
+
+```{r}
+test <- by_location %>% left_join(geo_local_authority)
+test %>% select(location,long,lat) %>% filter(is.na(long))
+```
+```{r}
+map <-  
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lng = test$long,
+             lat = test$lat,
+             label = geo_local_authority$location,
+             popup = test$total_applications_received)
+```
+
+```{r}
+map
+```
 
