@@ -51,6 +51,14 @@ age_group %>% filter(...1!="Total") %>% rename(age_group = ...1) %>% clean_names
 ```
 
 ```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
 by_location <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 5,skip = 3)
 by_location <- by_location %>% rename(location = ...1) %>% 
   clean_names() %>% 
@@ -106,6 +114,33 @@ value_of_payments %>%
   geom_col(fill = "green") +
   coord_flip()
   
+```
+
+
+```{r}
+geo_local_authority <- read_csv("raw_data/Local_Authority_Districts_December_2017_Super_Generalised_Clipped_Boundaries_in_Great_Britain.csv")
+```
+
+```{r}
+geo_local_authority <- geo_local_authority %>% select(lad17nm,long,lat) %>%
+rename(location = lad17nm) %>% 
+filter(lat > 55) %>% arrange(lat) %>% filter(!location  %in% c("Northumberland",
+                                                               "North Tyneside",
+                                                               "Newcastle upon Tyne"))
+```
+```{r}
+library(leaflet)
+
+```
+```{r}
+map <- 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lng = geo_local_authority$long,lat = geo_local_authority$lat,popup = geo_local_authority$location)
+```
+
+```{r}
+map%>% addProviderTiles(providers$CartoDB.Positron)
 ```
 
 
