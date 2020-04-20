@@ -1,13 +1,14 @@
 ui <- fluidPage(
   
   navbarPage( title = "Young Carer Grant",
-            tabPanel("one",
+            tabPanel("Main",
                      fluidRow(
                        column(4,
                               "Navigation"
                               ),
                        column(8,
-                              "Plot"
+                              "Plot",
+                              plotOutput("plot_1_1")
                               )
                      )
                      
