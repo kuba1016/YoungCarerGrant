@@ -1,4 +1,8 @@
 server <- function(input, output) {
+
+  # Plot tile reactive text
+  output$title_plot_1 <- renderPrint(input$tab1_nav)
+  # First plot on first page
   
   output$plot_1_1 <-  renderPlot({
     var = sym(input$tab1_nav)

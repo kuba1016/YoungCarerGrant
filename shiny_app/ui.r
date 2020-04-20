@@ -14,6 +14,7 @@ ui <- fluidPage(
                               ),
                        column(8,
                               "Plot",
+                              textOutput("title_plot_1"),
                               plotOutput("plot_1_1")
                               )
                      )
