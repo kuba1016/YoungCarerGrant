@@ -3,10 +3,14 @@ ui <- fluidPage(
   navbarPage( title = "Young Carer Grant",
             tabPanel("Main",
                      fluidRow(
-                       column(4,
-                              "Navigation"
+                       column(3,
+                              "Navigation",
+                              selectInput("tab1_nav",
+                                "What to plot?",
+                                choices = by_location %>% select(-location) %>% colnames()
+                                          )
                               ),
-                       column(8,
+                       column(6,
                               "Plot",
                               plotOutput("plot_1_1")
                               )
