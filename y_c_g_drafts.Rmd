@@ -166,6 +166,10 @@ map <-
 ```
 
 ```{r}
+map
+```
+
+```{r}
 by_location %>% 
   filter(!is.na(total_applications_received)) %>% 
   arrange(total_applications_received) %>% 
