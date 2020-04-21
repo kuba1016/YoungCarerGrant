@@ -3,7 +3,7 @@ ui <- fluidPage(
   navbarPage( title = "Young Carer Grant",
             tabPanel("Main",
                      fluidRow(
-                       column(4,
+                       column(3,
                               "Navigation",
                               selectInput("tab1_nav",
                                 "What to plot?",
@@ -12,7 +12,7 @@ ui <- fluidPage(
                                                "of_which_authorised")
                                           )
                               ),
-                       column(8,
+                       column(6,
                               "Plot",
                               textOutput("title_plot_1"),
                               plotOutput("plot_1_1")
