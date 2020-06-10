@@ -89,7 +89,7 @@ stats <- cared_for_person %>% select(-cared_for_person) %>% mutate_all(as.numeri
 cared_for_person <- cbind(info,stats)
 ```
 ```{r}
-value_of_payments <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 8,skip = 2)
+  value_of_payments <- read_xlsx("raw_data/Young+Carer+Grant+-+Tables+-+April+2020.xlsx",sheet = 8,skip = 2)
 value_of_payments <- value_of_payments %>% 
   clean_names() %>% 
   rename(value_of_payments = value_of_payments1_2_3) %>% 
